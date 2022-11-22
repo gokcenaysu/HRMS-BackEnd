@@ -8,23 +8,22 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Data
 @Entity
-@Table(name="faculties")
+@Table(name = "faculties")
 public class Faculty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="faculty")
+    @Column(name = "faculty")
     private String faculty;
 
-    @Column(name="department")
+    @Column(name = "department")
     private String department;
 
     @ManyToOne()
-    @JoinColumn(name="university_id")
+    @JoinColumn(name = "university_id")
     private University university;
 
 }

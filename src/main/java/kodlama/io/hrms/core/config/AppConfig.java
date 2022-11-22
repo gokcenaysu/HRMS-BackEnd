@@ -8,16 +8,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.cloudinary.utils.ObjectUtils;
 
-
 @Configuration
 public class AppConfig {
 
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         return new ModelMapper();
     }
 
-    public Cloudinary cloudinaryService(){
+    public Cloudinary cloudinaryService() {
         return new Cloudinary(ObjectUtils.asMap(
                 "cloud_name", "dlytm7ohp",
                 "api_key", "555425962964555",
@@ -25,7 +24,7 @@ public class AppConfig {
     }
 
     @Bean
-    public ImageService imageService(){
+    public ImageService imageService() {
         return new CloudinaryService();
     }
 }

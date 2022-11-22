@@ -8,8 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="departments")
-@Data
+@Table(name = "departments")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -19,10 +18,10 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="department")
+    @Column(name = "department")
     private String department;
 
     @ManyToOne()
-    @JoinColumn(name="position_id")
+    @JoinColumn(name = "position_id")
     private Position position;
 }

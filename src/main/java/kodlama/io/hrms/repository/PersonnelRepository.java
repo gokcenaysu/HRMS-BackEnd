@@ -1,11 +1,11 @@
 package kodlama.io.hrms.repository;
 
-import kodlama.io.hrms.model.concretes.Admin;
+import kodlama.io.hrms.model.concretes.Personnel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AdminRepository extends JpaRepository<Admin,Integer> {
+public interface PersonnelRepository extends JpaRepository<Personnel,Integer> {
 
-    Admin findById(int id);
+    Personnel findById(int id);
 }

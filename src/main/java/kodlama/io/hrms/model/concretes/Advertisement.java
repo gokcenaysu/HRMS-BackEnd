@@ -7,9 +7,8 @@ import javax.validation.constraints.FutureOrPresent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
-@Table(name="advertisements")
+@Table(name = "advertisements")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -20,41 +19,41 @@ public class Advertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name="min_Salary")
+    @Column(name = "min_Salary")
     private double minSalary;
 
-    @Column(name="max_Salary")
+    @Column(name = "max_Salary")
     private double maxSalary;
 
-    @Column(name="open_position_count")
+    @Column(name = "open_position_count")
     private int openPositionCount;
 
     @FutureOrPresent
-    @Column(name="application_deadline")
+    @Column(name = "application_deadline")
     private LocalDate applicationDeadline;
 
-    @Column(name="creation_date")
+    @Column(name = "creation_date")
     private LocalDateTime creationDate = LocalDateTime.now();
 
-    @Column(name="is_remote")
+    @Column(name = "is_remote")
     private boolean isRemote;
 
-    @Column(name="activity_status")
+    @Column(name = "activity_status")
     private boolean activityStatus;
 
     @ManyToOne()
-    @JoinColumn(name="employer_id")
+    @JoinColumn(name = "employer_id")
     private Employer employer;
 
     @ManyToOne()
-    @JoinColumn(name="position_id")
+    @JoinColumn(name = "position_id")
     private Position position;
 
     @ManyToOne()
-    @JoinColumn(name="working_time_id")
+    @JoinColumn(name = "working_time_id")
     private WorkingTime workingTime;
 
 }

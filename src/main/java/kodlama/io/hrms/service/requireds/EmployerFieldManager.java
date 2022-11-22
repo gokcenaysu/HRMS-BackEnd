@@ -1,8 +1,7 @@
 package kodlama.io.hrms.service.requireds;
 
 import kodlama.io.hrms.service.abstracts.FieldService;
-import kodlama.io.hrms.service.constants.messages;
-import kodlama.io.hrms.core.validation.RegexService;
+import kodlama.io.hrms.service.constants.Messages;
 import kodlama.io.hrms.core.utilities.results.ErrorDataResult;
 import kodlama.io.hrms.core.utilities.results.ErrorResult;
 import kodlama.io.hrms.core.utilities.results.Result;
@@ -17,12 +16,11 @@ import java.util.List;
 @Service
 public class EmployerFieldManager implements FieldService<Employer> {
 
-    private EmployerRepository employerRepository;
-    private UserRepository userRepository;
-    private RegexService regexService;
+    private final EmployerRepository employerRepository;
+    private final UserRepository userRepository;
+    private final RegexService regexService;
 
     public EmployerFieldManager(EmployerRepository employerRepository, UserRepository userRepository, RegexService regexService) {
-        super();
         this.employerRepository = employerRepository;
         this.userRepository = userRepository;
         this.regexService = regexService;
@@ -35,11 +33,11 @@ public class EmployerFieldManager implements FieldService<Employer> {
                 || employer.getWebsite().isEmpty() || employer.getWebsite().isBlank()
                 || employer.getCompany().isEmpty() || employer.getCompany().isBlank()
                 || employer.getPhoneNumber().isEmpty() || employer.getPhoneNumber().isBlank()) {
-            return new ErrorResult(messages.emptyField);
+            return new ErrorResult(Messages.emptyField);
         }
 
-        if(!regexService.isEmailFormat(employer.getEmail())){
-            return new ErrorResult(messages.emailFormat);
+        if (!regexService.isEmailFormat(employer.getEmail())) {
+            return new ErrorResult(Messages.emailFormat);
         }
 
         String email = employer.getEmail();
@@ -48,37 +46,37 @@ public class EmployerFieldManager implements FieldService<Employer> {
             return new ErrorResult("Your e-mail address and domain do not match");
 
         if (userRepository.existsByEmail(employer.getEmail()))
-            return new ErrorResult(messages.existsEmail);
+            return new ErrorResult(Messages.existsEmail);
 
         if (!regexService.isPasswordFormat(employer.getPassword()))
-            return new ErrorResult(messages.passwordFormat);
+            return new ErrorResult(Messages.passwordFormat);
 
         this.employerRepository.save(employer);
-        return new SuccessResult(messages.registered);
+        return new SuccessResult(Messages.registered);
     }
 
 
     @Override
     public Result deleteAccount(Employer employer) {
-        if(!employerRepository.existsByEmail(employer.getEmail()))
-            return new ErrorDataResult<List<Employer>>(messages.notEmail);
+        if (!employerRepository.existsByEmail(employer.getEmail()))
+            return new ErrorDataResult<List<Employer>>(Messages.notEmail);
 
-        if(employerRepository.findByPasswordEquals(employer.getPassword())==null)
-            return new ErrorDataResult<List<Employer>>(messages.errorPassword);
+        if (employerRepository.findByPasswordEquals(employer.getPassword()) == null)
+            return new ErrorDataResult<List<Employer>>(Messages.errorPassword);
 
         this.employerRepository.delete(employer);
-        return new SuccessResult(messages.deleted);
+        return new SuccessResult(Messages.deleted);
     }
 
     @Override
     public Result verifyLogin(Employer employer) {
-        if(!employerRepository.existsByEmail(employer.getEmail()))
-            return new ErrorDataResult<List<Employer>>(messages.notEmail);
+        if (!employerRepository.existsByEmail(employer.getEmail()))
+            return new ErrorDataResult<List<Employer>>(Messages.notEmail);
 
-        if(employerRepository.findByPasswordEquals(employer.getPassword())==null)
-            return new ErrorDataResult<List<Employer>>(messages.errorPassword);
+        if (employerRepository.findByPasswordEquals(employer.getPassword()) == null)
+            return new ErrorDataResult<List<Employer>>(Messages.errorPassword);
 
-        return new SuccessResult(messages.loggedIn);
+        return new SuccessResult(Messages.loggedIn);
     }
 }
 

@@ -1,6 +1,5 @@
 package kodlama.io.hrms.controller;
 
-import kodlama.io.hrms.service.abstracts.ResumeService;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.model.dtos.CreateResumeDto;
 import org.springframework.beans.factory.annotation.Autowired;

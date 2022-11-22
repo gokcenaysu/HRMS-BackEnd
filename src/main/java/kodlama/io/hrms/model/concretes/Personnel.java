@@ -11,20 +11,20 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Admin {
+public class Personnel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private int id;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    public Admin(int id, String email, String password) {
+    public Personnel(int id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;

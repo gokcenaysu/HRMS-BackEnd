@@ -2,9 +2,8 @@ package kodlama.io.hrms.controller;
 
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
-import kodlama.io.hrms.model.concretes.Position;
 import kodlama.io.hrms.model.concretes.WorkingTime;
-import kodlama.io.hrms.service.abstracts.WorkingTimeService;
+import kodlama.io.hrms.service.concretes.WorkingTimeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,24 +12,24 @@ import java.util.List;
 @RequestMapping("/api/working-time")
 public class WorkingTimeController {
 
-    private final WorkingTimeService workingTimeService;
+    private final WorkingTimeService service;
 
-    public WorkingTimeController(WorkingTimeService workingTimeService) {
-        this.workingTimeService = workingTimeService;
+    public WorkingTimeController(WorkingTimeService service) {
+        this.service = service;
     }
 
     @GetMapping("/getAll")
     public DataResult<List<WorkingTime>> findAll(){
-        return this.workingTimeService.findAll();
+        return this.service.findAll();
     }
 
     @PostMapping("/add")
     public Result add (@RequestBody WorkingTime workingTime) {
-        return this.workingTimeService.add(workingTime);
+        return this.service.add(workingTime);
     }
 
     @DeleteMapping("/delete")
     public Result delete(@RequestBody WorkingTime workingTime){
-        return this.workingTimeService.delete(workingTime);
+        return this.service.delete(workingTime);
     }
 }

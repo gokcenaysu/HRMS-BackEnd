@@ -10,8 +10,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="cities")
-@Data
+@Table(name = "cities")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -21,7 +20,7 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="city")
+    @Column(name = "city")
     private String city;
 
     @JsonIgnore()

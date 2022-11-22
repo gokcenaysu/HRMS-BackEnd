@@ -8,20 +8,20 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="employers")
+@Table(name = "employers")
 @PrimaryKeyJoinColumn(name = "id")
 @NoArgsConstructor
 @Getter
 @Setter
 public class Employer extends User {
 
-    @Column(name="company")
+    @Column(name = "company")
     private String company;
 
-    @Column(name="website")
+    @Column(name = "website")
     private String website;
 
-    @Column(name="phone_number")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @JsonIgnore()

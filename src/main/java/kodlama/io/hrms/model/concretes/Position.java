@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
 @Table(name = "positions")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +19,7 @@ public class Position {
     @Column(nullable = false)
     private int id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     @JsonIgnore()

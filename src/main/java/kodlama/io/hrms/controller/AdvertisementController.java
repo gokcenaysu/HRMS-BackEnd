@@ -1,9 +1,9 @@
 package kodlama.io.hrms.controller;
 
-import kodlama.io.hrms.service.abstracts.AdvertisementService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.model.concretes.Advertisement;
+import kodlama.io.hrms.service.concretes.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,56 +14,55 @@ import java.util.List;
 @CrossOrigin
 public class AdvertisementController {
 
-    private AdvertisementService advertisementService;
+    private final AdvertisementService service;
 
-    @Autowired
-    public AdvertisementController(AdvertisementService advertisementService) {
-        this.advertisementService = advertisementService;
+    public AdvertisementController(AdvertisementService service) {
+        this.service = service;
     }
 
     @GetMapping("/getAll")
-    public DataResult<List<Advertisement>> findAll(){
-        return this.advertisementService.findAll();
+    public DataResult<List<Advertisement>> findAll() {
+        return this.service.findAll();
     }
 
     @GetMapping("/sortedAsc")
-    public  DataResult<List<Advertisement>> findAllSortedAsc(){
-        return this.advertisementService.findAllSortedAsc();
+    public DataResult<List<Advertisement>> findAllSortedAsc() {
+        return this.service.findAllSortedAsc();
     }
 
     @PostMapping("/add")
-    public Result add(@RequestBody Advertisement advertisement){
-        return this.advertisementService.add(advertisement);
+    public Result add(@RequestBody Advertisement advertisement) {
+        return this.service.add(advertisement);
     }
 
     @DeleteMapping("/delete")
-    public Result remove(int id){
-        return this.advertisementService.remove(id);
+    public Result remove(int id) {
+        return this.service.remove(id);
     }
 
     @GetMapping(value = "/{id}")
-    public DataResult<Advertisement> findById (int id){
-        return this.advertisementService.findById(id);
+    public DataResult<Advertisement> findById(int id) {
+        return this.service.findById(id);
     }
 
     @GetMapping("/getByActivityStatus")
-    public DataResult<List<Advertisement>> findByActivityStatus(){
-        return this.advertisementService.findByActivityStatus();
+    public DataResult<List<Advertisement>> findByActivityStatus() {
+        return this.service.findByActivityStatus();
     }
 
     @GetMapping("/orderByCreationDate")
-    public DataResult<List<Advertisement>> findByOrderByCreationDate(){
-        return this.advertisementService.findByOrderByCreationDate();
+    public DataResult<List<Advertisement>> findByOrderByCreationDate() {
+        return this.service.findByOrderByCreationDate();
     }
 
     @GetMapping("/orderByApplicationDeadline")
-    public DataResult<List<Advertisement>> findByOrderByApplicationDeadline(){
-        return this.advertisementService.findByOrderByApplicationDeadline();
+    public DataResult<List<Advertisement>> findByOrderByApplicationDeadline() {
+        return this.service.findByOrderByApplicationDeadline();
     }
 
     @GetMapping("/getByCompany/{id}")
-    public DataResult<List<Advertisement>> findByOrderByEmployer(int employerId){
-        return this.advertisementService.findByActivityStatusAndEmployerId(employerId);
+    public DataResult<List<Advertisement>> findByOrderByEmployer(int employerId) {
+        return this.service.findByActivityStatusAndEmployerId(employerId);
     }
 
 }

@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
 @Table(name = "working_times")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +19,7 @@ public class WorkingTime {
     @Column(nullable = false)
     private int id;
 
-    @Column(name="time")
+    @Column(name = "time")
     private String time;
 
     @JsonIgnore()

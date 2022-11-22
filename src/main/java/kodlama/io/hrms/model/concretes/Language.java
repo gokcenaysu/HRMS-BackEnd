@@ -5,9 +5,8 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Data
 @Entity
-@Table(name="languages")
+@Table(name = "languages")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,14 +17,14 @@ public class Language {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="languages")
+    @Column(name = "languages")
     private String language;
 
-    @Column(name="level")
+    @Column(name = "level")
     private int level;
 
     @JsonIgnore()
     @ManyToOne()
-    @JoinColumn(name="jobSeeker_id")
+    @JoinColumn(name = "jobSeeker_id")
     private JobSeeker jobSeeker;
 }

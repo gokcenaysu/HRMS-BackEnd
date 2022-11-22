@@ -18,16 +18,16 @@ import java.util.List;
 @Setter
 public class JobSeeker extends User {
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name="identity_number")
+    @Column(name = "identity_number")
     private String identityNumber;
 
-    @Column(name="birth_year")
+    @Column(name = "birth_year")
     private String birthYear;
 
     @JsonIgnore()
@@ -55,6 +55,6 @@ public class JobSeeker extends User {
     private List<Experience> experiences;
 
 
-
-
+    public void setId(int id) {
+    }
 }

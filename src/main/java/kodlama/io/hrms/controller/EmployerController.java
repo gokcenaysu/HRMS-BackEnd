@@ -1,9 +1,9 @@
 package kodlama.io.hrms.controller;
 
-import kodlama.io.hrms.service.abstracts.EmployerService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.model.concretes.Employer;
+import kodlama.io.hrms.service.concretes.EmployerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,35 +14,34 @@ import java.util.List;
 @CrossOrigin
 public class EmployerController {
 
-    private EmployerService employerService;
+    private final EmployerService service;
 
-    @Autowired
     public EmployerController(EmployerService employerService) {
-        this.employerService = employerService;
+        this.service = employerService;
     }
 
     @GetMapping("/getAll")
     public DataResult<List<Employer>> findAll() {
-        return this.employerService.findAll();
+        return this.service.findAll();
     }
 
     @GetMapping(value = "/{id}")
-    public DataResult<Employer> findById(int id){
-        return this.employerService.findById(id);
+    public DataResult<Employer> findById(int id) {
+        return this.service.findById(id);
     }
 
     @PostMapping("/register")
     public Result register(@RequestBody Employer employer) {
-        return this.employerService.register(employer);
+        return this.service.register(employer);
     }
 
     @PutMapping("/login")
-    public Result login (@RequestBody Employer employer) {
-        return this.employerService.login(employer);
+    public Result login(@RequestBody Employer employer) {
+        return this.service.login(employer);
     }
 
     @DeleteMapping("/delete")
-    public Result delete(@RequestBody Employer employer){
-        return this.employerService.delete(employer);
+    public Result delete(@RequestBody Employer employer) {
+        return this.service.delete(employer);
     }
 }

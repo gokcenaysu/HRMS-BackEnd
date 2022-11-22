@@ -7,8 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Data
-@Table(name="links")
+@Table(name = "links")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,25 +18,25 @@ public class Link {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="github")
+    @Column(name = "github")
     private String github;
 
-    @Column(name="linkedin")
+    @Column(name = "linkedin")
     private String linkedin;
 
-    @Column(name="instagram")
+    @Column(name = "instagram")
     private String instagram;
 
-    @Column(name="twitter")
+    @Column(name = "twitter")
     private String twitter;
 
     @JsonIgnore
     @ManyToOne()
-    @JoinColumn(name="jobSeeker_id")
+    @JoinColumn(name = "jobSeeker_id")
     private JobSeeker jobSeeker;
 
     @JsonIgnore()
     @ManyToOne()
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 }

@@ -1,7 +1,6 @@
 package kodlama.io.hrms.service.concretes;
 
 import kodlama.io.hrms.model.dtos.CreateResumeDto;
-import kodlama.io.hrms.service.abstracts.ExperienceService;
 import kodlama.io.hrms.core.utilities.results.*;
 import kodlama.io.hrms.repository.ExperienceRepository;
 import kodlama.io.hrms.model.concretes.Experience;
@@ -12,52 +11,45 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ExperienceManager implements ExperienceService {
+public class ExperienceService {
 
-    @Autowired
-    private ExperienceRepository experienceRepository;
-    private ModelMapper modelMapper;
+    private final ExperienceRepository repository;
+    private final ModelMapper modelMapper;
 
-    public ExperienceManager(ExperienceRepository experienceRepository, ModelMapper modelMapper) {
-        this.experienceRepository = experienceRepository;
+    public ExperienceService(ExperienceRepository repository, ModelMapper modelMapper) {
+        this.repository = repository;
         this.modelMapper = modelMapper;
     }
 
 
-    @Override
-    public Result add(CreateResumeDto createResumeDto){
+    public Result add(CreateResumeDto createResumeDto) {
         Experience experience = this.modelMapper.map(createResumeDto, Experience.class);
-        this.experienceRepository.save(experience);
+        this.repository.save(experience);
         return new SuccessResult("ok");
     }
 
-    @Override
     public Result addAll(List<Experience> experience) {
-        this.experienceRepository.saveAll(experience);
+        this.repository.saveAll(experience);
         return new SuccessResult("ok");
     }
 
-    @Override
     public Result delete(Experience experience) {
-        this.experienceRepository.delete(experience);
+        this.repository.delete(experience);
         return new SuccessResult("ok");
     }
 
-    @Override
     public DataResult<List<Experience>> findAll() {
-        return new SuccessDataResult<List<Experience>>(this.experienceRepository.findAll(),"ok");
+        return new SuccessDataResult<List<Experience>>(this.repository.findAll(), "ok");
     }
 
-    @Override
     public DataResult<Experience> findById(int id) {
-        Experience experience = this.experienceRepository.findById(id);
-        if(experience==null)
+        Experience experience = this.repository.findById(id);
+        if (experience == null)
             return new ErrorDataResult<Experience>("no");
         return new SuccessDataResult<Experience>("ok");
     }
 
-    @Override
     public DataResult<List<Experience>> findAllByJobSeekerId(int id) {
-        return new SuccessDataResult<List<Experience>>(this.experienceRepository.findAllByJobSeekerId(id));
+        return new SuccessDataResult<List<Experience>>(this.repository.findAllByJobSeekerId(id));
     }
 }

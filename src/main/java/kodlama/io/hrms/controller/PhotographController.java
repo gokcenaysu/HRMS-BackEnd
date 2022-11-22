@@ -1,10 +1,10 @@
 package kodlama.io.hrms.controller;
 
-import kodlama.io.hrms.service.abstracts.PhotographService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.model.concretes.JobSeeker;
 import kodlama.io.hrms.model.concretes.Photograph;
+import kodlama.io.hrms.service.concretes.PhotographService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,11 +16,10 @@ import java.util.List;
 @CrossOrigin
 public class PhotographController {
 
-    private PhotographService photographService;
+    private final PhotographService service;
 
-    @Autowired
-    public PhotographController(PhotographService photographService) {
-        this.photographService = photographService;
+    public PhotographController(PhotographService service) {
+        this.service = service;
     }
 
    /* @PostMapping("add")
@@ -34,21 +33,21 @@ public class PhotographController {
         JobSeeker jobSeeker = new JobSeeker();
         jobSeeker.setId(id);
         photograph.setJobSeeker(jobSeeker);
-        return this.photographService.addPhoto(photograph, file);
+        return this.service.addPhoto(photograph, file);
     }
 
     @DeleteMapping("/delete")
-    public Result delete (@RequestBody Photograph photograph){
-        return this.photographService.delete(photograph);
+    public Result delete(@RequestBody Photograph photograph) {
+        return this.service.delete(photograph);
     }
 
     @GetMapping(value = "/{id}")
-    public DataResult<Photograph> findById (int id){
-        return this.photographService.findById(id);
+    public DataResult<Photograph> findById(int id) {
+        return this.service.findById(id);
     }
 
     @GetMapping("/getAll")
-    public DataResult<List<Photograph>> findAll(){
-        return this.photographService.findAll();
+    public DataResult<List<Photograph>> findAll() {
+        return this.service.findAll();
     }
 }

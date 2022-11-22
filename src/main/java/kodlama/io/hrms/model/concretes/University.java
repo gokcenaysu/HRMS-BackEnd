@@ -10,16 +10,15 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Data
 @Entity
-@Table(name="universities")
-public class  University {
+@Table(name = "universities")
+public class University {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="university")
+    @Column(name = "university")
     private String university;
 
 //    @Column(name="start_year")
@@ -34,12 +33,12 @@ public class  University {
     private JobSeeker jobSeeker;
 
     @ManyToOne()
-    @JoinColumn(name="city_id")
+    @JoinColumn(name = "city_id")
     private City city;
 
     @JsonIgnore
     @OneToMany()
-    @JoinColumn(name="university_id")
+    @JoinColumn(name = "university_id")
     private List<Faculty> faculties;
 
 

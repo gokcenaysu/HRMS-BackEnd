@@ -6,9 +6,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
-@Table(name="photographs")
+@Table(name = "photographs")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,7 +18,7 @@ public class Photograph {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="photo")
+    @Column(name = "photo")
     private String photo;
 
     @Column(name = "created_on")
@@ -27,7 +26,7 @@ public class Photograph {
 
     @JsonIgnore()
     @ManyToOne()
-    @JoinColumn(name="jobSeeker_id")
+    @JoinColumn(name = "jobSeeker_id")
     private JobSeeker jobSeeker;
 
 //    @JsonIgnore()

@@ -1,9 +1,9 @@
 package kodlama.io.hrms.controller;
 
-import kodlama.io.hrms.service.abstracts.UniversityService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.model.concretes.University;
+import kodlama.io.hrms.service.concretes.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,30 +14,29 @@ import java.util.List;
 @CrossOrigin
 public class UniversityController {
 
-    private UniversityService universityService;
+    private final UniversityService service;
 
-    @Autowired
     public UniversityController(UniversityService universityService) {
-        this.universityService = universityService;
+        this.service = universityService;
     }
 
     @PostMapping("/add")
-    public Result add (@RequestBody University university){
-        return this.universityService.add(university);
+    public Result add(@RequestBody University university) {
+        return this.service.add(university);
     }
 
     @DeleteMapping("/delete")
-    public Result delete (@RequestBody University university){
-        return this.universityService.delete(university);
+    public Result delete(@RequestBody University university) {
+        return this.service.delete(university);
     }
 
     @GetMapping(value = "/{id}")
-    public DataResult<University> findById (int id){
-        return this.universityService.findById(id);
+    public DataResult<University> findById(int id) {
+        return this.service.findById(id);
     }
 
     @GetMapping("/getAll")
-    public DataResult<List<University>> findAll(){
-        return this.universityService.findAll();
+    public DataResult<List<University>> findAll() {
+        return this.service.findAll();
     }
 }

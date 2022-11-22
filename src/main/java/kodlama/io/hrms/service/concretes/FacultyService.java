@@ -1,6 +1,5 @@
 package kodlama.io.hrms.service.concretes;
 
-import kodlama.io.hrms.service.abstracts.FacultyService;
 import kodlama.io.hrms.core.utilities.results.*;
 import kodlama.io.hrms.repository.FacultyRepository;
 import kodlama.io.hrms.model.concretes.Faculty;
@@ -11,44 +10,38 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class FacultyManager implements FacultyService {
+public class FacultyService {
 
-    private FacultyRepository facultyRepository;
-    private ModelMapper modelMapper;
+    private final FacultyRepository repository;
+    private final ModelMapper modelMapper;
 
-    @Autowired
-    public FacultyManager(FacultyRepository facultyRepository, ModelMapper modelMapper) {
-        this.facultyRepository = facultyRepository;
+    public FacultyService(FacultyRepository repository, ModelMapper modelMapper) {
+        this.repository = repository;
         this.modelMapper = modelMapper;
     }
 
-    @Override
     public Result add(Faculty faculty) {
-            this.facultyRepository.save(faculty);
-            return new SuccessResult("ok");
-        }
+        this.repository.save(faculty);
+        return new SuccessResult("ok");
+    }
 
-    @Override
     public Result addAll(List<Faculty> faculty) {
-        this.facultyRepository.saveAll(faculty);
+        this.repository.saveAll(faculty);
         return new SuccessResult("ok");
     }
 
-    @Override
     public Result delete(Faculty faculty) {
-        this.facultyRepository.delete(faculty);
+        this.repository.delete(faculty);
         return new SuccessResult("ok");
     }
 
-    @Override
     public DataResult<List<Faculty>> findAll() {
-        return new SuccessDataResult<List<Faculty>>(this.facultyRepository.findAll(),"ok");
+        return new SuccessDataResult<List<Faculty>>(this.repository.findAll(), "ok");
     }
 
-    @Override
     public DataResult<Faculty> findById(int id) {
-        Faculty faculty = this.facultyRepository.findById(id);
-        if(faculty==null)
+        Faculty faculty = this.repository.findById(id);
+        if (faculty == null)
             return new ErrorDataResult<Faculty>("no");
         return new SuccessDataResult<Faculty>("ok");
     }

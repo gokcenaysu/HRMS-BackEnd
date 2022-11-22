@@ -9,6 +9,8 @@ import java.util.Map;
 public interface ImageService {
 
     DataResult<?> save(MultipartFile file);
+
     DataResult<Map> upload(MultipartFile multipartFile) throws IOException;
-    DataResult<Map> delete (String id) throws IOException;
+
+    DataResult<Map> delete(String id) throws IOException;
 }
